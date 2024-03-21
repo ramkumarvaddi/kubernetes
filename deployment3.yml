@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: tomcat-deployment
+  labels:
+    type: ram
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      type: ram
+  template:
+    metadata:
+      name: tomcat-pod
+      labels:
+        type: ram
+    spec:
+      containers:
+         - name: mytomcat
+           image: tomee
+           ports:
+             - containerPort: 8080
+               hostPort: 9090
+...
